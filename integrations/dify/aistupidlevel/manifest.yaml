@@ -1,0 +1,38 @@
+version: 0.0.1
+type: plugin
+author: aistupidlevel
+name: aistupidlevel
+label:
+  en_US: AI Stupid Level
+  zh_Hans: AI Stupid Level
+description:
+  en_US: Benchmark-based model routing. Routing modes such as auto-coding and auto-value send each request to the model that currently scores best, using your own provider keys.
+  zh_Hans: 基于基准测试的模型路由。auto-coding、auto-value 等路由模式会把每个请求发送给当前得分最高的模型，使用你自己的供应商密钥。
+icon: icon.svg
+icon_dark: icon-dark.svg
+resource:
+  memory: 268435456
+  permission:
+    model:
+      enabled: true
+      llm: true
+      text_embedding: false
+      rerank: false
+      tts: false
+      speech2text: false
+      moderation: false
+plugins:
+  models:
+    - provider/aistupidlevel.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+created_at: 2026-10-19T00:00:00.000000000+00:00
+privacy: PRIVACY.md
+verified: false

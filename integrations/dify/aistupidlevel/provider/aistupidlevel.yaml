@@ -1,0 +1,83 @@
+provider: aistupidlevel
+label:
+  en_US: AI Stupid Level
+  zh_Hans: AI Stupid Level
+description:
+  en_US: Routes each request to the model that currently scores best on continuously re-run coding, reasoning and tool-use benchmarks, using your own provider keys.
+  zh_Hans: 根据持续运行的编码、推理和工具调用基准测试，把每个请求发送给当前得分最高的模型，使用你自己的供应商密钥。
+icon_small:
+  en_US: icon.svg
+icon_small_dark:
+  en_US: icon-dark.svg
+icon_large:
+  en_US: icon.svg
+icon_large_dark:
+  en_US: icon-dark.svg
+background: "#EAF1FF"
+help:
+  title:
+    en_US: Get a router key from AI Stupid Level
+    zh_Hans: 从 AI Stupid Level 获取路由密钥
+  url:
+    en_US: https://aistupidlevel.info/router/keys
+supported_model_types:
+  - llm
+configurate_methods:
+  - predefined-model
+  - customizable-model
+provider_credential_schema:
+  credential_form_schemas:
+    - variable: api_key
+      label:
+        en_US: Router key
+        zh_Hans: 路由密钥
+      type: secret-input
+      required: true
+      placeholder:
+        en_US: aism_...
+        zh_Hans: aism_...
+      help:
+        en_US: Create one at aistupidlevel.info/router/keys and add at least one provider key to your account.
+        zh_Hans: 在 aistupidlevel.info/router/keys 创建，并在账户中添加至少一个供应商密钥。
+model_credential_schema:
+  model:
+    label:
+      en_US: Model ID
+      zh_Hans: 模型 ID
+    placeholder:
+      en_US: A routing mode (e.g. auto-task) or a model ID to pin (e.g. claude-opus-5-5)
+      zh_Hans: 路由模式（如 auto-task）或要固定的模型 ID（如 claude-opus-5-5）
+  credential_form_schemas:
+    - variable: api_key
+      label:
+        en_US: Router key
+        zh_Hans: 路由密钥
+      type: secret-input
+      required: true
+      placeholder:
+        en_US: aism_...
+        zh_Hans: aism_...
+    - variable: context_size
+      label:
+        en_US: Model context size
+        zh_Hans: 模型上下文长度
+      type: text-input
+      required: false
+      default: "262144"
+    - variable: max_tokens_to_sample
+      label:
+        en_US: Upper bound for max tokens
+        zh_Hans: 最大 token 上限
+      type: text-input
+      required: false
+      default: "65536"
+models:
+  llm:
+    position: models/llm/_position.yaml
+    predefined:
+      - models/llm/*.yaml
+extra:
+  python:
+    provider_source: provider/aistupidlevel.py
+    model_sources:
+      - models/llm/llm.py
