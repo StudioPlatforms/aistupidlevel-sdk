@@ -1,0 +1,29 @@
+{
+  "name": "@aistupidlevel/ai-sdk-provider",
+  "version": "0.1.0",
+  "description": "AI Stupid Level Smart Router provider for the Vercel AI SDK: every request goes to the model measuring best for it, with your own provider keys.",
+  "license": "MIT",
+  "author": "AI Stupid Level (https://aistupidlevel.info)",
+  "homepage": "https://aistupidlevel.info/router/docs#sdks",
+  "repository": { "type": "git", "url": "git+https://github.com/StudioPlatforms/aistupidlevel-sdk.git", "directory": "packages/ai-sdk-provider" },
+  "keywords": ["ai-sdk", "vercel-ai", "llm", "router", "model-routing", "aistupidlevel"],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" }, "./package.json": "./package.json" },
+  "files": ["dist", "README.md", "LICENSE"],
+  "sideEffects": false,
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json",
+    "test": "node --test test/*.test.mjs",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "dependencies": {
+    "@ai-sdk/openai-compatible": "^3.0.62"
+  },
+  "devDependencies": {
+    "ai": "7.0.127",
+    "typescript": "5.9.3"
+  }
+}
