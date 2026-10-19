@@ -86,7 +86,8 @@ export interface ChatCompletionCreateParams {
   tool_choice?: ToolChoice;
   parallel_tool_calls?: boolean;
   response_format?: ResponseFormat;
-  reasoning_effort?: 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh';
+  /** Mapped by the router to the nearest level the chosen model supports. */
+  reasoning_effort?: 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh' | 'max';
   stop?: string | string[];
   frequency_penalty?: number;
   presence_penalty?: number;
