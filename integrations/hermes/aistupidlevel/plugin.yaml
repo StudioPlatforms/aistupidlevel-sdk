@@ -1,0 +1,5 @@
+name: aistupidlevel
+kind: model-provider
+version: 0.1.0
+description: AI Stupid Level Smart Router — each request goes to the model currently scoring best on continuously re-run benchmarks, with your own provider keys (OpenAI-compatible)
+author: AI Stupid Level
