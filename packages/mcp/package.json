@@ -1,24 +1,51 @@
 {
   "name": "@aistupidlevel/mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server for AI Stupid Level: LLM leaderboard, model history, drift status, incidents and provider status from the ASL Data API, plus route previews and prompts through the ASL Smart Router.",
   "license": "MIT",
   "author": "AI Stupid Level (https://aistupidlevel.info)",
   "homepage": "https://aistupidlevel.info/router/docs",
-  "repository": { "type": "git", "url": "git+https://github.com/StudioPlatforms/aistupidlevel-sdk.git", "directory": "packages/mcp" },
-  "bugs": { "url": "https://github.com/StudioPlatforms/aistupidlevel-sdk/issues" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StudioPlatforms/aistupidlevel-sdk.git",
+    "directory": "packages/mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/StudioPlatforms/aistupidlevel-sdk/issues"
+  },
   "mcpName": "io.github.StudioPlatforms/aistupidlevel",
-  "keywords": ["mcp", "model-context-protocol", "mcp-server", "llm", "benchmarks", "leaderboard", "drift", "router", "ai"],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "llm",
+    "benchmarks",
+    "leaderboard",
+    "drift",
+    "router",
+    "ai"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "bin": { "aistupidlevel-mcp": "dist/cli.js" },
+  "bin": {
+    "aistupidlevel-mcp": "dist/cli.js"
+  },
   "exports": {
-    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
     "./package.json": "./package.json"
   },
-  "files": ["dist", "README.md", "LICENSE"],
-  "engines": { "node": ">=18" },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.json && chmod +x dist/cli.js",
     "test": "node --test test/*.test.mjs",

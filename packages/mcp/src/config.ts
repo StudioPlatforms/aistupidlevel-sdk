@@ -1,6 +1,6 @@
 /** Settings, read from the environment by default. Keys are never logged or echoed back. */
 
-export const VERSION = '0.1.0';
+export const VERSION = '0.1.1';
 export const DEFAULT_DATA_BASE_URL = 'https://aistupidlevel.info/api/v1';
 export const DEFAULT_ROUTER_BASE_URL = 'https://aistupidlevel.info/v1';
 

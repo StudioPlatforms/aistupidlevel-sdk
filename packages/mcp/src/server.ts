@@ -50,7 +50,9 @@ export function createServer(options: ServerOptions = {}): McpServer {
       version: VERSION,
       websiteUrl: LINKS.site,
       description: 'LLM benchmark rankings, drift status and incidents from AI Stupid Level, plus its Smart Router.',
-      icons: [{ src: 'https://aistupidlevel.info/apple-touch-icon.png', mimeType: 'image/png', sizes: ['180x180'] }],
+      // No `sizes`: the 2025-11-25 spec makes it a string array, but clients on earlier MCP SDKs
+      // (mcp-proxy 5.x, which Glama's checks run through) validate it as a string and refuse to connect.
+      icons: [{ src: 'https://aistupidlevel.info/apple-touch-icon.png', mimeType: 'image/png' }],
     },
     { instructions: INSTRUCTIONS },
   );
