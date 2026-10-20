@@ -1,0 +1,34 @@
+{
+  "id": "aistupidlevel",
+  "name": "AI Stupid Level",
+  "description": "AI Stupid Level Smart Router: each request goes to the model scoring best right now on continuously re-run benchmarks, with your own provider keys",
+  "categories": ["models"],
+  "providers": ["aistupidlevel"],
+  "setup": {
+    "providers": [
+      {
+        "id": "aistupidlevel",
+        "envVars": ["ASL_ROUTER_KEY"]
+      }
+    ]
+  },
+  "providerAuthChoices": [
+    {
+      "provider": "aistupidlevel",
+      "method": "api-key",
+      "choiceId": "aistupidlevel-api-key",
+      "choiceLabel": "AI Stupid Level router key",
+      "groupId": "aistupidlevel",
+      "groupLabel": "AI Stupid Level",
+      "optionKey": "aistupidlevelApiKey",
+      "cliFlag": "--aistupidlevel-api-key",
+      "cliOption": "--aistupidlevel-api-key <key>",
+      "cliDescription": "AI Stupid Level router key (aism_…)"
+    }
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}
