@@ -1,6 +1,6 @@
 {
   "name": "@aistupidlevel/openclaw-provider",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "OpenClaw provider plugin for the AI Stupid Level Smart Router: each request goes to the model scoring best right now on continuously re-run benchmarks, with your own provider keys.",
   "type": "module",
   "license": "MIT",

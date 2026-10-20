@@ -13,6 +13,7 @@ test("model rows are text-only, free at the router, with pool-wide limits", () =
   assert.deepEqual(r.input, ["text"]);
   assert.deepEqual(r.cost, { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 });
   assert.equal(r.contextWindow, 262144);
+  assert.equal(r.maxTokens, 64000);
   assert.equal(modelRow("claude-opus-5-5").name, "claude-opus-5-5");
 });
 

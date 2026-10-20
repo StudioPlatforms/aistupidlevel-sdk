@@ -61,7 +61,7 @@ Image input is not accepted: the router routes text and tool calls only.
 ```sh
 npm install
 npm test        # builds dist/ and runs the unit tests
-npm pack && openclaw plugins install npm-pack:./aistupidlevel-openclaw-provider-0.1.0.tgz --force --accept-capabilities
+npm pack && openclaw plugins install npm-pack:./aistupidlevel-openclaw-provider-0.1.1.tgz --force --accept-capabilities
 ```
 
 Built and tested against OpenClaw 2026.10.5.

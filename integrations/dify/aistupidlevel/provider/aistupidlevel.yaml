@@ -70,7 +70,7 @@ model_credential_schema:
         zh_Hans: 最大 token 上限
       type: text-input
       required: false
-      default: "65536"
+      default: "64000"
 models:
   llm:
     position: models/llm/_position.yaml

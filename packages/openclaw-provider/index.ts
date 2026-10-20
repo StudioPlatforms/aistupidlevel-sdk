@@ -38,7 +38,7 @@ export function modelRow(id: string) {
     input: ["text"] as Array<"text">,
     cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
     contextWindow: 262144,
-    maxTokens: 65536,
+    maxTokens: 64000,
   };
 }
 
