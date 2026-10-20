@@ -1,0 +1,39 @@
+{
+ "status": 200,
+ "headers": {
+  "content-type": "application/json; charset=utf-8",
+  "x-ratelimit-limit": "150",
+  "x-ratelimit-remaining": "145",
+  "x-ratelimit-reset": "52"
+ },
+ "body": {
+  "object": "route.preview",
+  "requested_model": "auto-reasoning",
+  "strategy": "best_reasoning",
+  "sandbox": true,
+  "primary": {
+   "model": "claude-fable-5-1",
+   "provider": "anthropic",
+   "score": 100,
+   "reasoning": "Selected claude-fable-5-1 from anthropic for best reasoning (deep reasoning benchmark) (score: 100.0). Ranked #1 of 24 available models. Last updated 5h ago. Production: 4/4 succeeded in the last 14d, observed 2077ms.",
+   "estimated_cost_usd": 0.03
+  },
+  "fallbacks": [
+   {
+    "model": "kimi-k3",
+    "provider": "kimi",
+    "score": 100,
+    "reasoning": "Fallback: kimi-k3 from kimi (score: 100.0)",
+    "estimated_cost_usd": 0.009
+   },
+   {
+    "model": "gemini-3.8-flash",
+    "provider": "google",
+    "score": 99,
+    "reasoning": "Fallback: gemini-3.8-flash from google (score: 99.0)",
+    "estimated_cost_usd": 0.0045
+   }
+  ],
+  "fallback_enabled": true
+ }
+}

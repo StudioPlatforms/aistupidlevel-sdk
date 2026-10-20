@@ -1,0 +1,248 @@
+{
+ "status": 200,
+ "headers": {
+  "content-type": "application/json; charset=utf-8",
+  "x-ratelimit-limit": "150",
+  "x-ratelimit-remaining": "149",
+  "x-ratelimit-reset": "60"
+ },
+ "body": {
+  "object": "list",
+  "data": [
+   {
+    "id": "auto",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-coding",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-reasoning",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-tooling",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-best",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-cheapest",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-fastest",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-fastest-quality",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-consistent",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-value",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-value-coding",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-value-reasoning",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-value-tooling",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-task",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "auto-split",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "aistupidlevel"
+   },
+   {
+    "id": "claude-opus-4-6",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "anthropic"
+   },
+   {
+    "id": "claude-sonnet-4-6",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "anthropic"
+   },
+   {
+    "id": "claude-opus-4-7",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "anthropic"
+   },
+   {
+    "id": "gpt-5.5",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "openai"
+   },
+   {
+    "id": "deepseek-v4-flash",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "deepseek"
+   },
+   {
+    "id": "deepseek-v4-pro",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "deepseek"
+   },
+   {
+    "id": "claude-opus-4-8",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "anthropic"
+   },
+   {
+    "id": "kimi-k2.7-code",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "kimi"
+   },
+   {
+    "id": "claude-sonnet-5",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "anthropic"
+   },
+   {
+    "id": "gpt-5.6-sol",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "openai"
+   },
+   {
+    "id": "gpt-5.6-terra",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "openai"
+   },
+   {
+    "id": "gpt-5.6-luna",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "openai"
+   },
+   {
+    "id": "kimi-k3",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "kimi"
+   },
+   {
+    "id": "gemini-3.5-flash-lite",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "google"
+   },
+   {
+    "id": "claude-opus-5",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "anthropic"
+   },
+   {
+    "id": "claude-fable-5-1",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "anthropic"
+   },
+   {
+    "id": "gemini-3.8-flash",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "google"
+   },
+   {
+    "id": "gpt-6-astra",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "openai"
+   },
+   {
+    "id": "gpt-6-sol",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "openai"
+   },
+   {
+    "id": "gpt-6-luna",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "openai"
+   },
+   {
+    "id": "claude-opus-5-5",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "anthropic"
+   },
+   {
+    "id": "glm-5.3",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "glm"
+   },
+   {
+    "id": "claude-sonnet-5-5",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "anthropic"
+   },
+   {
+    "id": "gpt-6.1-sol",
+    "object": "model",
+    "created": 1792477944,
+    "owned_by": "openai"
+   }
+  ]
+ }
+}

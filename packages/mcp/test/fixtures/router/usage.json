@@ -1,0 +1,1 @@
+{"object":"usage","period":"2026-10","plan":"free","requests":{"used":64,"included":1000,"remaining":936,"unlimited":false},"credits":{"requests":0,"in_use":false},"allowed":true,"key":{"id":1,"name":"test key","prefix":"aism_xxxxxxx","project_id":null,"expires_at":null,"budget":{"monthly_limit_usd":null,"hard_limit":false,"spent_this_month_usd":0}}}

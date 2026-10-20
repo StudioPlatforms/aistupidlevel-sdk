@@ -1,0 +1,51 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.StudioPlatforms/aistupidlevel",
+  "title": "AI Stupid Level",
+  "description": "LLM benchmark rankings, drift status, incidents and Smart Router previews from AI Stupid Level.",
+  "websiteUrl": "https://aistupidlevel.info/router/docs",
+  "repository": {
+    "url": "https://github.com/StudioPlatforms/aistupidlevel-sdk",
+    "source": "github",
+    "subfolder": "packages/mcp"
+  },
+  "icons": [
+    { "src": "https://aistupidlevel.info/apple-touch-icon.png", "mimeType": "image/png", "sizes": ["180x180"] }
+  ],
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@aistupidlevel/mcp",
+      "version": "0.1.0",
+      "runtimeHint": "npx",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        {
+          "name": "ASL_DATA_KEY",
+          "description": "Data API key (asl_live_...) for rankings, history, drift, incidents and provider status. Free key: https://aistupidlevel.info/account/data-keys (10 requests a day, 1 a minute).",
+          "isRequired": false,
+          "isSecret": true,
+          "format": "string",
+          "placeholder": "asl_live_..."
+        },
+        {
+          "name": "ASL_ROUTER_KEY",
+          "description": "Smart Router key (aism_...) for preview_route, ask_router and usage. Create one at https://aistupidlevel.info/router/keys.",
+          "isRequired": false,
+          "isSecret": true,
+          "format": "string",
+          "placeholder": "aism_..."
+        },
+        {
+          "name": "ASL_SANDBOX",
+          "description": "true: every Smart Router call returns a mock answer from real routing, so nothing is spent or counted.",
+          "isRequired": false,
+          "format": "boolean",
+          "default": "false"
+        }
+      ]
+    }
+  ]
+}

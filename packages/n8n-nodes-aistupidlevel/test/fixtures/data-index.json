@@ -1,0 +1,65 @@
+{
+ "status": 200,
+ "headers": {
+  "content-type": "application/json; charset=utf-8",
+  "x-ratelimit-limit": "10",
+  "x-ratelimit-remaining": "5",
+  "x-ratelimit-reset": "1792540800"
+ },
+ "body": {
+  "success": true,
+  "version": "1.0.0",
+  "generated_at": "2026-10-20T06:26:56.458Z",
+  "license": "Attribution required — cite aistupidlevel.info as the source.",
+  "data": {
+   "current": {
+    "timestamp": "2026-10-20T06:18:01.839Z",
+    "label": "Current",
+    "globalScore": 87,
+    "modelsCount": 24,
+    "hoursAgo": 0
+   },
+   "history": [
+    {
+     "timestamp": "2026-10-20T06:18:01.839Z",
+     "label": "Current",
+     "globalScore": 87,
+     "modelsCount": 24,
+     "hoursAgo": 0
+    },
+    {
+     "timestamp": "2026-10-20T00:18:01.839Z",
+     "label": "6h ago",
+     "globalScore": 91,
+     "modelsCount": 24,
+     "hoursAgo": 6
+    },
+    {
+     "timestamp": "2026-10-19T18:18:01.839Z",
+     "label": "12h ago",
+     "globalScore": 92,
+     "modelsCount": 24,
+     "hoursAgo": 12
+    },
+    {
+     "timestamp": "2026-10-19T12:18:01.839Z",
+     "label": "18h ago",
+     "globalScore": 91,
+     "modelsCount": 24,
+     "hoursAgo": 18
+    },
+    {
+     "timestamp": "2026-10-19T06:18:01.839Z",
+     "label": "24h ago",
+     "globalScore": 91,
+     "modelsCount": 24,
+     "hoursAgo": 24
+    }
+   ],
+   "trend": "declining",
+   "performingWell": 24,
+   "totalModels": 24,
+   "lastUpdated": "2026-10-20T06:18:01.924Z"
+  }
+ }
+}

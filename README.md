@@ -9,6 +9,9 @@ based on benchmarks that are re-run continuously. You call it with your own prov
 | TypeScript / JavaScript | `npm install @aistupidlevel/router` | [packages/router](packages/router) |
 | Python | `pip install aistupidlevel` | [python](python) |
 | Vercel AI SDK provider | `npm install @aistupidlevel/ai-sdk-provider` | [packages/ai-sdk-provider](packages/ai-sdk-provider) |
+| MCP server (Claude, Cursor, VS Code, …) | `npx -y @aistupidlevel/mcp` | [packages/mcp](packages/mcp) |
+| n8n community node | Settings → Community Nodes → `n8n-nodes-aistupidlevel` | [packages/n8n-nodes-aistupidlevel](packages/n8n-nodes-aistupidlevel) |
+| Raycast extension | Raycast Store (in review) | [integrations/raycast/aistupidlevel](integrations/raycast/aistupidlevel) |
 
 [`openapi/router-v1.json`](openapi/router-v1.json) describes the API in OpenAPI 3.1, for generating a
 client in any other language. The live copy is at <https://aistupidlevel.info/v1/openapi.json>.
@@ -52,6 +55,8 @@ See the [API documentation](https://aistupidlevel.info/router/docs#sdks).
 # TypeScript (the router package runs on Node 18+; the AI SDK provider needs Node 22+)
 cd packages/router && npm ci && npm run build && npm test
 cd packages/ai-sdk-provider && npm ci && npm run build && npm test
+cd packages/mcp && npm ci && npm run build && npm test
+cd packages/n8n-nodes-aistupidlevel && npm ci && npm run build && npm run lint && npm test
 
 # Python
 cd python && pip install -e . && python -m unittest discover -s tests
@@ -70,10 +75,17 @@ ASL_ROUTER_KEY=aism_... python -m unittest discover -s tests
 1. Bump the version in every place it appears:
    - `packages/router/package.json` and `packages/router/src/core.ts`;
    - `packages/ai-sdk-provider/package.json` and `packages/ai-sdk-provider/src/index.ts`;
+   - `packages/mcp/package.json`, `packages/mcp/src/config.ts` and both versions in `packages/mcp/server.json`;
    - `python/src/aistupidlevel/_version.py`.
 2. npm: `npm publish --access public` in each package directory. `prepublishOnly` builds the package
    and runs its tests first.
 3. PyPI: `cd python && python -m build && twine upload dist/*`.
+4. MCP Registry, after the npm release of `@aistupidlevel/mcp`: `cd packages/mcp && mcp-publisher login github && mcp-publisher publish`.
+5. n8n node: n8n accepts only npm releases with provenance, so it is published by
+   [`.github/workflows/n8n-publish.yml`](.github/workflows/n8n-publish.yml). Bump
+   `packages/n8n-nodes-aistupidlevel/package.json` and its `CHANGELOG.md`, then push a tag `n8n-v<version>`.
+6. Raycast: from `integrations/raycast/aistupidlevel`, `npm run publish` opens a pull request to
+   raycast/extensions.
 
 ## Licence
 

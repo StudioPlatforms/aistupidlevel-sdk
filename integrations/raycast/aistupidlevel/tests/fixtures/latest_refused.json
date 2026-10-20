@@ -1,0 +1,6 @@
+{
+  "error": "latest_requires_plan",
+  "message": "The latest benchmark run is part of the paid plans. The free tier reads the 24-hour, 7-day and 30-day views: use period=24h, 7d or 1m.",
+  "tier": "free",
+  "pricing": "https://aistupidlevel.info/pricing"
+}

@@ -1,0 +1,47 @@
+# Publishes n8n-nodes-aistupidlevel to npm with a provenance statement, which n8n requires for
+# community nodes published since 2026-05-01.
+#
+# Release: bump the version in packages/n8n-nodes-aistupidlevel/package.json and CHANGELOG.md,
+# commit, then push a tag n8n-v<version> (for example n8n-v0.1.0).
+#
+# npm auth, one of:
+#   - Trusted Publishing: on npmjs.com, package settings -> Trusted Publishers -> GitHub Actions,
+#     repository StudioPlatforms/aistupidlevel-sdk, workflow n8n-publish.yml. No secret needed.
+#     (A package's first version must exist before it can be configured, so use the token once.)
+#   - NPM_TOKEN repository secret: a granular token with publish rights to the package.
+
+name: n8n node publish
+
+on:
+  push:
+    tags: ['n8n-v*.*.*']
+
+defaults:
+  run:
+    working-directory: packages/n8n-nodes-aistupidlevel
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+          cache: npm
+          cache-dependency-path: packages/n8n-nodes-aistupidlevel/package-lock.json
+      - name: Check the tag matches package.json
+        run: |
+          v=$(node -p "require('./package.json').version")
+          [ "${GITHUB_REF_NAME}" = "n8n-v$v" ] || { echo "tag ${GITHUB_REF_NAME} does not match version $v"; exit 1; }
+      - run: npm install -g npm@11.6.2 # trusted publishing needs npm 11.5.1+
+      - run: npm ci
+      - run: npm test
+      # Inside GitHub Actions, n8n-node release lints, builds and publishes with provenance.
+      - run: npm run release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

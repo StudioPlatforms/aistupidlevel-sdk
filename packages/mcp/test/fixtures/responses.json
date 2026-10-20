@@ -1,0 +1,101 @@
+{
+  "drift": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "x-ratelimit-limit": "10",
+      "x-ratelimit-remaining": "1",
+      "x-ratelimit-reset": "1792540800"
+    }
+  },
+  "history": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "x-ratelimit-limit": "10",
+      "x-ratelimit-remaining": "6",
+      "x-ratelimit-reset": "1792540800"
+    }
+  },
+  "incidents": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "x-ratelimit-limit": "10",
+      "x-ratelimit-remaining": "4",
+      "x-ratelimit-reset": "1792540800"
+    }
+  },
+  "index": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "x-ratelimit-limit": "10",
+      "x-ratelimit-remaining": "5",
+      "x-ratelimit-reset": "1792540800"
+    }
+  },
+  "latest_refused": {
+    "status": 403,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "x-ratelimit-limit": "10",
+      "x-ratelimit-remaining": "0",
+      "x-ratelimit-reset": "1792540800"
+    }
+  },
+  "me": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "x-ratelimit-limit": "10",
+      "x-ratelimit-remaining": "9",
+      "x-ratelimit-reset": "1792540800"
+    }
+  },
+  "model": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "x-ratelimit-limit": "10",
+      "x-ratelimit-remaining": "7",
+      "x-ratelimit-reset": "1792540800"
+    }
+  },
+  "models": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "x-ratelimit-limit": "10",
+      "x-ratelimit-remaining": "8",
+      "x-ratelimit-reset": "1792540800"
+    }
+  },
+  "providers": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "x-ratelimit-limit": "10",
+      "x-ratelimit-remaining": "3",
+      "x-ratelimit-reset": "1792540800"
+    }
+  },
+  "recommendations": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "x-ratelimit-limit": "10",
+      "x-ratelimit-remaining": "2",
+      "x-ratelimit-reset": "1792540800"
+    }
+  },
+  "quota_exceeded": {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "x-ratelimit-limit": "10",
+      "x-ratelimit-remaining": "0",
+      "x-ratelimit-reset": "1792540800"
+    }
+  }
+}

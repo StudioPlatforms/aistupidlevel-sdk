@@ -1,0 +1,1 @@
+{"error":"quota_exceeded","message":"You have used 11 of 10 requests on the Free tier today. The quota resets at 00:00 UTC.","tier":"free","limit":10,"upgrade":"https://aistupidlevel.info/router/subscription","docs":"https://aistupidlevel.info/api-docs"}

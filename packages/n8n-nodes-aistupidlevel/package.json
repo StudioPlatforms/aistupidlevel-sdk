@@ -1,0 +1,70 @@
+{
+  "name": "n8n-nodes-aistupidlevel",
+  "version": "0.1.0",
+  "description": "n8n nodes for AI Stupid Level: the Smart Router (each request goes to the model measuring best for it, with your own provider keys), a chat model for the AI Agent, and continuously re-run LLM benchmark, drift and incident data.",
+  "license": "MIT",
+  "homepage": "https://aistupidlevel.info/router/docs",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "aistupidlevel",
+    "llm",
+    "router",
+    "benchmarks",
+    "ai-agent"
+  ],
+  "author": {
+    "name": "AI Stupid Level",
+    "email": "hello@aistupidlevel.info",
+    "url": "https://aistupidlevel.info"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StudioPlatforms/aistupidlevel-sdk.git",
+    "directory": "packages/n8n-nodes-aistupidlevel"
+  },
+  "bugs": {
+    "url": "https://github.com/StudioPlatforms/aistupidlevel-sdk/issues"
+  },
+  "scripts": {
+    "build": "n8n-node build",
+    "build:watch": "tsc --watch",
+    "dev": "n8n-node dev",
+    "lint": "n8n-node lint",
+    "lint:fix": "n8n-node lint --fix",
+    "test": "n8n-node build && node --test test/*.test.js",
+    "release": "n8n-node release",
+    "prepublishOnly": "n8n-node prerelease"
+  },
+  "files": [
+    "dist",
+    "!dist/tsconfig.tsbuildinfo",
+    "!dist/**/*.map"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "aiNodeSdkVersion": 1,
+    "strict": true,
+    "credentials": [
+      "dist/credentials/AiStupidLevelRouterApi.credentials.js",
+      "dist/credentials/AiStupidLevelDataApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/AiStupidLevel/AiStupidLevel.node.js",
+      "dist/nodes/LmChatAiStupidLevel/LmChatAiStupidLevel.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@n8n/ai-node-sdk": "0.32.3",
+    "@n8n/node-cli": "0.51.3",
+    "eslint": "9.32.0",
+    "n8n-workflow": "2.42.2",
+    "prettier": "3.6.2",
+    "release-it": "21.1.0",
+    "typescript": "5.9.2"
+  },
+  "peerDependencies": {
+    "@n8n/ai-node-sdk": "*",
+    "n8n-workflow": "*"
+  }
+}

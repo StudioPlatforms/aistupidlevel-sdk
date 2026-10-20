@@ -1,0 +1,159 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "aistupidlevel",
+  "title": "AI Stupid Level",
+  "description": "AI model leaderboard, drift status and incidents from AI Stupid Level, plus its Smart Router, which sends each request to the top-scoring model.",
+  "icon": "icon.png",
+  "author": "aistupidlevel",
+  "platforms": [
+    "macOS",
+    "Windows"
+  ],
+  "categories": [
+    "Developer Tools",
+    "Data"
+  ],
+  "keywords": [
+    "llm",
+    "benchmark",
+    "leaderboard",
+    "ai models",
+    "drift",
+    "router",
+    "openai",
+    "claude",
+    "gemini",
+    "deepseek"
+  ],
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "leaderboard",
+      "title": "Model Leaderboard",
+      "subtitle": "AI Stupid Level",
+      "description": "Rank AI models by their AI Stupid Level benchmark scores for coding, reasoning and tool use, with score history and drift status for each model.",
+      "mode": "view"
+    },
+    {
+      "name": "incidents",
+      "title": "Model Incidents",
+      "subtitle": "AI Stupid Level",
+      "description": "See active and recently resolved incidents: performance drift, service disruptions and provider-wide degradations detected by AI Stupid Level.",
+      "mode": "view"
+    },
+    {
+      "name": "ask-router",
+      "title": "Ask Smart Router",
+      "subtitle": "AI Stupid Level",
+      "description": "Send a prompt through the AI Stupid Level Smart Router and see which model answered and why. Uses your own provider keys.",
+      "mode": "view",
+      "arguments": [
+        {
+          "name": "prompt",
+          "placeholder": "Prompt",
+          "type": "text",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "preferences": [
+    {
+      "name": "dataApiKey",
+      "title": "Data API Key",
+      "description": "Used by Model Leaderboard and Model Incidents. Create a free key at aistupidlevel.info/account/data-keys.",
+      "type": "password",
+      "required": false,
+      "placeholder": "asl_live_…"
+    },
+    {
+      "name": "routerKey",
+      "title": "Smart Router Key",
+      "description": "Used by Ask Smart Router and the Smart Router models in Raycast AI. Create one at aistupidlevel.info/router/keys.",
+      "type": "password",
+      "required": false,
+      "placeholder": "aism_…"
+    },
+    {
+      "name": "defaultMode",
+      "title": "Default Routing Mode",
+      "description": "The routing mode Ask Smart Router starts with.",
+      "type": "dropdown",
+      "required": false,
+      "default": "auto-best",
+      "data": [
+        {
+          "title": "Best Overall",
+          "value": "auto-best"
+        },
+        {
+          "title": "Coding",
+          "value": "auto-coding"
+        },
+        {
+          "title": "Reasoning",
+          "value": "auto-reasoning"
+        },
+        {
+          "title": "Tool Use",
+          "value": "auto-tooling"
+        },
+        {
+          "title": "Match the Task",
+          "value": "auto-task"
+        },
+        {
+          "title": "Best Value",
+          "value": "auto-value"
+        },
+        {
+          "title": "Best Value for Coding",
+          "value": "auto-value-coding"
+        },
+        {
+          "title": "Fastest Near the Top",
+          "value": "auto-fastest-quality"
+        },
+        {
+          "title": "My Saved Strategy",
+          "value": "auto"
+        }
+      ]
+    },
+    {
+      "name": "sandbox",
+      "title": "Sandbox Mode",
+      "label": "Route for real, answer with a mock",
+      "description": "Requests are routed as usual, but the answer is a placeholder: no provider is called and nothing is charged. Useful for trying the extension.",
+      "type": "checkbox",
+      "required": false,
+      "default": false
+    }
+  ],
+  "ai": {
+    "modelProvider": "models"
+  },
+  "dependencies": {
+    "@raycast/api": "2.6.3",
+    "@raycast/utils": "2.3.2"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "2.2.0",
+    "@types/node": "22.19.17",
+    "@types/react": "19.0.10",
+    "eslint": "10.12.0",
+    "prettier": "3.9.9",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3"
+  },
+  "scripts": {
+    "build": "ray build",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "test": "tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "echo \"\\n\\nIt seems like you are trying to publish the Raycast extension to npm.\\n\\nIf you did intend to publish it to npm, remove the \\`prepublishOnly\\` script and rerun \\`npm publish\\` again.\\nIf you wanted to publish it to the Raycast Store instead, use \\`npm run publish\\` instead.\\n\\n\" && exit 1",
+    "publish": "npx @raycast/api@latest publish"
+  }
+}

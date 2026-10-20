@@ -1,0 +1,68 @@
+{
+ "status": 200,
+ "headers": {
+  "content-type": "application/json; charset=utf-8",
+  "x-ratelimit-limit": "10",
+  "x-ratelimit-remaining": "4",
+  "x-ratelimit-reset": "1792540800"
+ },
+ "body": {
+  "success": true,
+  "version": "1.0.0",
+  "generated_at": "2026-10-20T06:27:58.592Z",
+  "license": "Attribution required — cite aistupidlevel.info as the source.",
+  "period": "latest",
+  "limit": 5,
+  "data": [
+   {
+    "id": 939,
+    "modelId": 275,
+    "modelName": "gpt-5.6-sol",
+    "provider": "openai",
+    "incidentType": "provider_wide_degradation",
+    "severity": "major",
+    "title": "PROVIDER INCIDENT: OPENAI — 5/8 models affected",
+    "description": "Provider-level incident: 5/8 openai models affected. Monitor closely for resolution.",
+    "detectedAt": "2026-10-14T10:00:53.848Z",
+    "resolvedAt": "2026-10-17T16:43:03.859Z",
+    "metadata": {
+     "alertRate": 0.625,
+     "affectedModels": [
+      "gpt-5.6-sol",
+      "gpt-5.6-terra",
+      "gpt-5.6-luna",
+      "gpt-6-sol",
+      "gpt-6-luna"
+     ],
+     "severity": "major"
+    }
+   },
+   {
+    "id": 938,
+    "modelId": 220,
+    "modelName": "claude-opus-4-6",
+    "provider": "anthropic",
+    "incidentType": "provider_wide_degradation",
+    "severity": "critical",
+    "title": "PROVIDER INCIDENT: ANTHROPIC — 8/9 models affected",
+    "description": "Provider-level incident: 8/9 anthropic models affected. Monitor closely for resolution.",
+    "detectedAt": "2026-10-14T10:00:53.846Z",
+    "resolvedAt": "2026-10-17T16:43:03.859Z",
+    "metadata": {
+     "alertRate": 0.8888888888888888,
+     "affectedModels": [
+      "claude-opus-4-6",
+      "claude-sonnet-4-6",
+      "claude-opus-4-7",
+      "claude-sonnet-5",
+      "claude-opus-5",
+      "claude-fable-5-1",
+      "claude-opus-5-5",
+      "claude-sonnet-5-5"
+     ],
+     "severity": "critical"
+    }
+   }
+  ]
+ }
+}

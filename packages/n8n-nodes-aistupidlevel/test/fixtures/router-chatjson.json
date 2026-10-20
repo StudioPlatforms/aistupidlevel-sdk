@@ -1,0 +1,47 @@
+{
+ "status": 200,
+ "headers": {
+  "content-type": "application/json; charset=utf-8",
+  "x-ratelimit-limit": "150",
+  "x-ratelimit-remaining": "147",
+  "x-ratelimit-reset": "53",
+  "x-aism-provider": "openai",
+  "x-aism-model": "gpt-6-luna",
+  "x-aism-latency": "249",
+  "x-aism-reasoning": "Sandbox: Selected gpt-6-luna from openai for best value overall (combined score per measured dollar) (score: 90.0, $0.016 per benchmark run, 5730 points per dollar; among models within 5 points of your best available). Ranked #1 of 24 available models. Last updated 39m ago. Production: 18/18 succeeded in the last 14d, observed 2774ms.",
+  "x-aism-request-id": "chatcmpl-mvgbbxehrytnhcon",
+  "x-aism-sandbox": "true"
+ },
+ "body": {
+  "id": "chatcmpl-mvgbbxehrytnhcon",
+  "object": "chat.completion",
+  "created": 1792478353,
+  "model": "gpt-6-luna",
+  "system_fingerprint": "aism_v1_openai",
+  "service_tier": "default",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "role": "assistant",
+     "content": "{\"sandbox\":true,\"model\":\"gpt-6-luna\",\"provider\":\"openai\"}",
+     "refusal": null,
+     "annotations": []
+    },
+    "logprobs": null,
+    "finish_reason": "stop"
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 10,
+   "completion_tokens": 15,
+   "total_tokens": 25,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 0
+   }
+  }
+ }
+}

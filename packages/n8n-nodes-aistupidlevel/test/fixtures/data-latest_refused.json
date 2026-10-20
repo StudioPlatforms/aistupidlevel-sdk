@@ -1,0 +1,15 @@
+{
+ "status": 403,
+ "headers": {
+  "content-type": "application/json; charset=utf-8",
+  "x-ratelimit-limit": "10",
+  "x-ratelimit-remaining": "0",
+  "x-ratelimit-reset": "1792540800"
+ },
+ "body": {
+  "error": "latest_requires_plan",
+  "message": "The latest benchmark run is part of the paid plans. The free tier reads the 24-hour, 7-day and 30-day views: use period=24h, 7d or 1m.",
+  "tier": "free",
+  "pricing": "https://aistupidlevel.info/pricing"
+ }
+}
