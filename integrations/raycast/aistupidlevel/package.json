@@ -4,7 +4,7 @@
   "title": "AI Stupid Level",
   "description": "AI model leaderboard, drift status and incidents from AI Stupid Level, plus its Smart Router, which sends each request to the top-scoring model.",
   "icon": "icon.png",
-  "author": "aistupidlevel",
+  "author": "studioplatforms",
   "platforms": [
     "macOS",
     "Windows"
