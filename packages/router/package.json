@@ -1,26 +1,53 @@
 {
   "name": "@aistupidlevel/router",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Client for the AI Stupid Level Smart Router: one OpenAI-compatible endpoint that routes every request to the model measuring best for it, on continuously re-run benchmarks, with your own provider keys.",
   "license": "MIT",
   "author": "AI Stupid Level (https://aistupidlevel.info)",
   "homepage": "https://aistupidlevel.info/router/docs#sdks",
-  "repository": { "type": "git", "url": "git+https://github.com/StudioPlatforms/aistupidlevel-sdk.git", "directory": "packages/router" },
-  "keywords": ["llm", "router", "ai", "openai", "anthropic", "gemini", "deepseek", "model-routing", "benchmarks", "byok"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StudioPlatforms/aistupidlevel-sdk.git",
+    "directory": "packages/router"
+  },
+  "keywords": [
+    "llm",
+    "router",
+    "ai",
+    "openai",
+    "anthropic",
+    "gemini",
+    "deepseek",
+    "model-routing",
+    "benchmarks",
+    "byok"
+  ],
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
-      "require": { "types": "./dist/cjs/index.d.ts", "default": "./dist/cjs/index.js" }
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
     },
     "./package.json": "./package.json"
   },
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "sideEffects": false,
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.json && tsc -p tsconfig.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json",
     "test": "node --test test/*.test.mjs",

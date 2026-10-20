@@ -3,7 +3,7 @@ import {
 } from './errors.js';
 import type { RoutingInfo } from './types.js';
 
-export const VERSION = '0.1.0';
+export const VERSION = '0.1.1';
 export const DEFAULT_BASE_URL = 'https://aistupidlevel.info/v1';
 /** Reasoning models can think for minutes; the router itself allows 15. */
 export const DEFAULT_TIMEOUT_MS = 10 * 60 * 1000;
