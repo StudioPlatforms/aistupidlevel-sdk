@@ -13,7 +13,7 @@ based on benchmarks that are re-run continuously. You call it with your own prov
 | n8n community node | Settings → Community Nodes → `n8n-nodes-aistupidlevel` | [packages/n8n-nodes-aistupidlevel](packages/n8n-nodes-aistupidlevel) |
 | Raycast extension | Raycast Store (in review) | [integrations/raycast/aistupidlevel](integrations/raycast/aistupidlevel) |
 | Hermes Agent provider plugin | `hermes plugins install aistupidlevel` | [integrations/hermes/aistupidlevel](integrations/hermes/aistupidlevel) |
-| OpenClaw provider plugin | `openclaw plugins install npm:@aistupidlevel/openclaw-provider` | [packages/openclaw-provider](packages/openclaw-provider) |
+| OpenClaw provider plugin | `openclaw plugins install clawhub:@aistupidlevel/openclaw-provider` | [packages/openclaw-provider](packages/openclaw-provider) |
 
 [`openapi/router-v1.json`](openapi/router-v1.json) describes the API in OpenAPI 3.1, for generating a
 client in any other language. The live copy is at <https://aistupidlevel.info/v1/openapi.json>.

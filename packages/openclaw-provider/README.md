@@ -7,7 +7,7 @@ The router is an OpenAI-compatible endpoint. Instead of a fixed model you pick a
 ## Install
 
 ```sh
-openclaw plugins install npm:@aistupidlevel/openclaw-provider
+openclaw plugins install clawhub:@aistupidlevel/openclaw-provider
 ```
 
 ## Set up
