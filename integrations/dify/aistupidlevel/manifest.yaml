@@ -35,4 +35,6 @@ meta:
     entrypoint: main
 created_at: 2026-10-19T00:00:00.000000000+00:00
 privacy: PRIVACY.md
+repo: https://github.com/StudioPlatforms/aistupidlevel-sdk/tree/main/integrations/dify/aistupidlevel
+contact: hello@aistupidlevel.info
 verified: false

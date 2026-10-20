@@ -8,6 +8,11 @@ AI Stupid Level runs coding, reasoning and tool-use benchmarks on the major AI m
 2. Add at least one provider key to your AI Stupid Level account at [aistupidlevel.info/router/providers](https://aistupidlevel.info/router/providers).
 3. In Dify, go to **Settings → Model Provider → AI Stupid Level** and paste the router key. The key is checked against `GET /v1/usage`, which is free and sends no prompt.
 
+## Credentials and connection
+
+- **Credentials:** one AI Stupid Level router key (an API key starting with `aism_`), entered once at provider level. Your provider keys (OpenAI, Anthropic, and so on) stay in your AI Stupid Level account; the plugin never sees them.
+- **Connection:** the plugin connects only to the endpoint `https://aistupidlevel.info/v1` over HTTPS (chat completions, and `GET /v1/usage` to check the key). Your Dify instance needs outbound network access to `aistupidlevel.info`; no other host, proxy or base URL setting is used.
+
 ## Models
 
 | Model | Routes to |
