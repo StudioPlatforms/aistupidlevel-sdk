@@ -1,0 +1,6 @@
+# Only packages/mcp/Dockerfile builds from this context; keep it small.
+.git
+**/node_modules
+**/dist
+**/.venv
+**/__pycache__

@@ -142,6 +142,15 @@ Configuration**). VS Code prompts for the keys and stores them securely:
 Any client that can start a stdio server can run it: the command is `npx -y @aistupidlevel/mcp`,
 and the keys go in the environment variables listed under [Configuration](#configuration).
 
+### Docker
+
+The image builds the server from source. From the repository root:
+
+```sh
+docker build -f packages/mcp/Dockerfile -t aistupidlevel-mcp .
+docker run -i --rm -e ASL_DATA_KEY=asl_live_... -e ASL_ROUTER_KEY=aism_... aistupidlevel-mcp
+```
+
 ## Tools
 
 All tools except `ask_router` are read-only.
