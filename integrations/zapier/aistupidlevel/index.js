@@ -9,6 +9,8 @@ module.exports = {
   version: require('./package.json').version,
   platformVersion: require('zapier-platform-core').version,
   authentication,
+  // Pass inputs through unchanged: chatBody already skips empty optional fields.
+  flags: { cleanInputData: false },
   beforeRequest: [addAuth],
   afterResponse: [handleErrors],
   triggers: { [routingModes.key]: routingModes },

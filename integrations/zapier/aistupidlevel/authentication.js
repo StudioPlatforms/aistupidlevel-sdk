@@ -23,7 +23,7 @@ module.exports = {
       required: true,
       default: 'live',
       choices: { live: 'Live', sandbox: 'Sandbox (real routing, mock answers, nothing spent)' },
-      helpText: 'Sandbox picks the model exactly as Live does but returns a mock answer, so you can build and test Zaps before adding provider keys.',
+      helpText: 'Sandbox picks the model exactly as Live does but returns a mock answer, so you can build and test Zaps before adding provider keys. [About sandbox mode](https://aistupidlevel.info/router/docs#sandbox).',
     },
     {
       key: 'dataKey',
