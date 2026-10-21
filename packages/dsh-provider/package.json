@@ -1,0 +1,48 @@
+{
+  "name": "@aistupidlevel/dsh-provider",
+  "version": "0.1.0",
+  "description": "AI Stupid Level Smart Router for DeepSeek Harness: adds an `aistupidlevel` provider route whose routing modes send each request to the model scoring best for the task, with your own provider keys.",
+  "type": "module",
+  "license": "MIT",
+  "author": "AI Stupid Level <hello@aistupidlevel.info> (https://aistupidlevel.info)",
+  "homepage": "https://github.com/StudioPlatforms/aistupidlevel-sdk/tree/main/packages/dsh-provider#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StudioPlatforms/aistupidlevel-sdk.git",
+    "directory": "packages/dsh-provider"
+  },
+  "bugs": "https://github.com/StudioPlatforms/aistupidlevel-sdk/issues",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "llm",
+    "provider",
+    "router",
+    "aistupidlevel",
+    "openai-compatible"
+  ],
+  "files": [
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "engines": {
+    "dsh": "0.2.0-rc.2 || 0.2.1-rc.2"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-llm-pi-ai": "0.2.0-rc.2 || 0.2.1-rc.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

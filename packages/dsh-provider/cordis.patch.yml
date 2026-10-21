@@ -1,0 +1,48 @@
+# AI Stupid Level route for DeepSeek Harness, served by its own pi-ai adapter (@deepseek-ai/dsh-llm-pi-ai).
+# Adds the `aistupidlevel` provider route to the stock `llm-pi-ai` row; it does not change your
+# default model. Each routing mode sends a request to the model that scores best for it on
+# AI Stupid Level's benchmarks, among the providers connected to your account, called with your
+# own provider keys.
+#
+# A later layer that sets `llm-pi-ai` providers of its own replaces this list: if your profile
+# configures other pi-ai providers, copy the `aistupidlevel` block below into that list too.
+- id: llm-pi-ai
+  config:
+    providers:
+      aistupidlevel:
+        displayName: AI Stupid Level
+        apiKeyEnv: ASL_ROUTER_KEY
+        api: openai-completions
+        baseURL: https://aistupidlevel.info/v1
+        # The smallest context window and output cap among the models the router can pick.
+        defaultContextWindow: 262144
+        defaultMaxTokens: 64000
+        models:
+          - id: auto-coding
+            name: Best for coding (routed)
+            contextWindow: 262144
+            maxTokens: 64000
+          - id: auto-tooling
+            name: Best for tool use (routed)
+            contextWindow: 262144
+            maxTokens: 64000
+          - id: auto-reasoning
+            name: Best for reasoning (routed)
+            contextWindow: 262144
+            maxTokens: 64000
+          - id: auto-best
+            name: Best overall (routed)
+            contextWindow: 262144
+            maxTokens: 64000
+          - id: auto-task
+            name: Matched to each request (routed)
+            contextWindow: 262144
+            maxTokens: 64000
+          - id: auto-value
+            name: Best value (routed)
+            contextWindow: 262144
+            maxTokens: 64000
+          - id: auto-fastest-quality
+            name: Fastest strong model (routed)
+            contextWindow: 262144
+            maxTokens: 64000
