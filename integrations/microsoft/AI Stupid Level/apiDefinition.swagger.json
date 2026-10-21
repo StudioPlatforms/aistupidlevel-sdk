@@ -1,0 +1,512 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "AI Stupid Level",
+    "version": "1.0.0",
+    "description": "Send prompts through the AI Stupid Level Smart Router, which picks the model that scores best for the task on continuously re-run coding, reasoning and tool-use benchmarks and calls it with your own provider keys.",
+    "contact": {
+      "name": "AI Stupid Level",
+      "url": "https://aistupidlevel.info",
+      "email": "hello@aistupidlevel.info"
+    }
+  },
+  "host": "aistupidlevel.info",
+  "basePath": "/v1",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/chat/completions": {
+      "post": {
+        "operationId": "SendPrompt",
+        "summary": "Send a prompt",
+        "description": "Sends a conversation to the model that scores best for the routing mode and returns its answer.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "model",
+                "messages"
+              ],
+              "properties": {
+                "model": {
+                  "type": "string",
+                  "default": "auto-best",
+                  "x-ms-summary": "Routing mode",
+                  "description": "A routing mode such as auto-coding or auto-best, or a model ID to pin that model.",
+                  "x-ms-dynamic-values": {
+                    "operationId": "ListRoutingModes",
+                    "value-collection": "data",
+                    "value-path": "id",
+                    "value-title": "id"
+                  }
+                },
+                "messages": {
+                  "type": "array",
+                  "x-ms-summary": "Messages",
+                  "description": "The conversation so far. Put the instructions in a system message and the prompt in a user message.",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "role",
+                      "content"
+                    ],
+                    "properties": {
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "system",
+                          "user",
+                          "assistant"
+                        ],
+                        "default": "user",
+                        "x-ms-summary": "Role",
+                        "description": "Who wrote this message."
+                      },
+                      "content": {
+                        "type": "string",
+                        "x-ms-summary": "Content",
+                        "description": "The text of the message."
+                      }
+                    }
+                  }
+                },
+                "max_tokens": {
+                  "type": "integer",
+                  "format": "int32",
+                  "x-ms-summary": "Max output tokens",
+                  "description": "The longest answer to allow, up to 64,000 tokens.",
+                  "x-ms-visibility": "advanced"
+                },
+                "temperature": {
+                  "type": "number",
+                  "format": "float",
+                  "x-ms-summary": "Temperature",
+                  "description": "Randomness from 0 to 2. Leave it empty for the model default.",
+                  "x-ms-visibility": "advanced"
+                },
+                "reasoning_effort": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "low",
+                    "medium",
+                    "high",
+                    "max"
+                  ],
+                  "x-ms-summary": "Reasoning effort",
+                  "description": "How much the model should reason before answering. The router maps it to the closest level each model supports.",
+                  "x-ms-visibility": "advanced"
+                }
+              }
+            }
+          },
+          {
+            "name": "X-ASL-Sandbox",
+            "in": "header",
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "x-ms-summary": "Sandbox",
+            "description": "Set to true for real routing with a mock answer, with nothing sent to a model or counted.",
+            "x-ms-visibility": "advanced"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The answer.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "x-ms-summary": "Completion ID",
+                  "description": "The completion ID."
+                },
+                "model": {
+                  "type": "string",
+                  "x-ms-summary": "Model",
+                  "description": "The model that answered."
+                },
+                "choices": {
+                  "type": "array",
+                  "x-ms-summary": "Choices",
+                  "description": "The answers.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "index": {
+                        "type": "integer",
+                        "format": "int32",
+                        "x-ms-summary": "Index",
+                        "description": "The position of this answer."
+                      },
+                      "finish_reason": {
+                        "type": "string",
+                        "x-ms-summary": "Finish reason",
+                        "description": "Why the model stopped writing."
+                      },
+                      "message": {
+                        "type": "object",
+                        "properties": {
+                          "role": {
+                            "type": "string",
+                            "x-ms-summary": "Role",
+                            "description": "The author of the message."
+                          },
+                          "content": {
+                            "type": "string",
+                            "x-ms-summary": "Answer",
+                            "description": "The text of the answer."
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "usage": {
+                  "type": "object",
+                  "properties": {
+                    "prompt_tokens": {
+                      "type": "integer",
+                      "format": "int32",
+                      "x-ms-summary": "Prompt tokens",
+                      "description": "Tokens in the prompt."
+                    },
+                    "completion_tokens": {
+                      "type": "integer",
+                      "format": "int32",
+                      "x-ms-summary": "Answer tokens",
+                      "description": "Tokens in the answer."
+                    },
+                    "total_tokens": {
+                      "type": "integer",
+                      "format": "int32",
+                      "x-ms-summary": "Total tokens",
+                      "description": "Tokens in the prompt and the answer."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-AISM-Model": {
+                "type": "string",
+                "description": "The model that answered.",
+                "x-ms-summary": "Model that answered"
+              },
+              "X-AISM-Provider": {
+                "type": "string",
+                "description": "The provider that answered.",
+                "x-ms-summary": "Provider"
+              },
+              "X-AISM-Reasoning": {
+                "type": "string",
+                "description": "Why the router chose this model.",
+                "x-ms-summary": "Why this model"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/route/preview": {
+      "post": {
+        "operationId": "PreviewRoute",
+        "summary": "Preview the route",
+        "description": "Shows which model the router would pick for a conversation, with its score, estimated cost and fallbacks. Nothing is sent to a model or counted.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "model",
+                "messages"
+              ],
+              "properties": {
+                "model": {
+                  "type": "string",
+                  "default": "auto-best",
+                  "x-ms-summary": "Routing mode",
+                  "description": "A routing mode such as auto-coding or auto-best, or a model ID to pin that model.",
+                  "x-ms-dynamic-values": {
+                    "operationId": "ListRoutingModes",
+                    "value-collection": "data",
+                    "value-path": "id",
+                    "value-title": "id"
+                  }
+                },
+                "messages": {
+                  "type": "array",
+                  "x-ms-summary": "Messages",
+                  "description": "The conversation so far. Put the instructions in a system message and the prompt in a user message.",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "role",
+                      "content"
+                    ],
+                    "properties": {
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "system",
+                          "user",
+                          "assistant"
+                        ],
+                        "default": "user",
+                        "x-ms-summary": "Role",
+                        "description": "Who wrote this message."
+                      },
+                      "content": {
+                        "type": "string",
+                        "x-ms-summary": "Content",
+                        "description": "The text of the message."
+                      }
+                    }
+                  }
+                },
+                "max_tokens": {
+                  "type": "integer",
+                  "format": "int32",
+                  "x-ms-summary": "Max output tokens",
+                  "description": "The longest answer to allow, up to 64,000 tokens.",
+                  "x-ms-visibility": "advanced"
+                },
+                "temperature": {
+                  "type": "number",
+                  "format": "float",
+                  "x-ms-summary": "Temperature",
+                  "description": "Randomness from 0 to 2. Leave it empty for the model default.",
+                  "x-ms-visibility": "advanced"
+                },
+                "reasoning_effort": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "low",
+                    "medium",
+                    "high",
+                    "max"
+                  ],
+                  "x-ms-summary": "Reasoning effort",
+                  "description": "How much the model should reason before answering. The router maps it to the closest level each model supports.",
+                  "x-ms-visibility": "advanced"
+                }
+              }
+            }
+          },
+          {
+            "name": "X-ASL-Sandbox",
+            "in": "header",
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "x-ms-summary": "Sandbox",
+            "description": "Set to true for real routing with a mock answer, with nothing sent to a model or counted.",
+            "x-ms-visibility": "advanced"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The route the router would take.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "requested_model": {
+                  "type": "string",
+                  "x-ms-summary": "Routing mode",
+                  "description": "The routing mode that was asked for."
+                },
+                "strategy": {
+                  "type": "string",
+                  "x-ms-summary": "Strategy",
+                  "description": "The routing strategy behind the mode."
+                },
+                "primary": {
+                  "type": "object",
+                  "properties": {
+                    "model": {
+                      "type": "string",
+                      "x-ms-summary": "Model",
+                      "description": "The model the router would pick."
+                    },
+                    "provider": {
+                      "type": "string",
+                      "x-ms-summary": "Provider",
+                      "description": "The provider of that model."
+                    },
+                    "score": {
+                      "type": "number",
+                      "format": "float",
+                      "x-ms-summary": "Score",
+                      "description": "The model's benchmark score for this mode."
+                    },
+                    "reasoning": {
+                      "type": "string",
+                      "x-ms-summary": "Why this model",
+                      "description": "Why the router would pick this model."
+                    },
+                    "estimated_cost_usd": {
+                      "type": "number",
+                      "format": "float",
+                      "x-ms-summary": "Estimated cost (USD)",
+                      "description": "The estimated cost of the request at the provider's price."
+                    }
+                  }
+                },
+                "fallbacks": {
+                  "type": "array",
+                  "x-ms-summary": "Fallbacks",
+                  "description": "The models tried next if the first one fails.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "model": {
+                        "type": "string",
+                        "x-ms-summary": "Fallback model",
+                        "description": "A fallback model."
+                      },
+                      "provider": {
+                        "type": "string",
+                        "x-ms-summary": "Fallback provider",
+                        "description": "The provider of the fallback model."
+                      }
+                    }
+                  }
+                },
+                "fallback_enabled": {
+                  "type": "boolean",
+                  "x-ms-summary": "Fallback enabled",
+                  "description": "Whether the router tries the fallbacks."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/models": {
+      "get": {
+        "operationId": "ListRoutingModes",
+        "summary": "List routing modes and models",
+        "description": "Lists the routing modes and the models you can pin.",
+        "x-ms-visibility": "internal",
+        "responses": {
+          "200": {
+            "description": "The routing modes and models.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "x-ms-summary": "Models",
+                  "description": "The routing modes and models.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "x-ms-summary": "ID",
+                        "description": "The routing mode or model ID."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage": {
+      "get": {
+        "operationId": "GetUsage",
+        "summary": "Get usage for this month",
+        "description": "Returns the routed requests used and left this month for the plan of this key. The call itself is free.",
+        "responses": {
+          "200": {
+            "description": "This month's usage.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "period": {
+                  "type": "string",
+                  "x-ms-summary": "Month",
+                  "description": "The month, as YYYY-MM."
+                },
+                "plan": {
+                  "type": "string",
+                  "x-ms-summary": "Plan",
+                  "description": "The plan of the account."
+                },
+                "requests": {
+                  "type": "object",
+                  "properties": {
+                    "used": {
+                      "type": "integer",
+                      "format": "int32",
+                      "x-ms-summary": "Requests used",
+                      "description": "Routed requests used this month."
+                    },
+                    "included": {
+                      "type": "integer",
+                      "format": "int32",
+                      "x-ms-summary": "Requests included",
+                      "description": "Routed requests included each month."
+                    },
+                    "remaining": {
+                      "type": "integer",
+                      "format": "int32",
+                      "x-ms-summary": "Requests left",
+                      "description": "Routed requests left this month."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "security": [
+    {
+      "api_key": []
+    }
+  ],
+  "x-ms-connector-metadata": [
+    {
+      "propertyName": "Website",
+      "propertyValue": "https://aistupidlevel.info"
+    },
+    {
+      "propertyName": "Privacy policy",
+      "propertyValue": "https://aistupidlevel.info/privacy"
+    },
+    {
+      "propertyName": "Categories",
+      "propertyValue": "AI;IT Operations"
+    }
+  ]
+}

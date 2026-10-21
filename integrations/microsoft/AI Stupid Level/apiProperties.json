@@ -1,0 +1,35 @@
+{
+  "properties": {
+    "connectionParameters": {
+      "api_key": {
+        "type": "securestring",
+        "uiDefinition": {
+          "displayName": "Router key",
+          "description": "Your AI Stupid Level router key, which starts with aism_.",
+          "tooltip": "Create a router key at https://aistupidlevel.info/router/keys and add your provider keys there.",
+          "constraints": {
+            "tabIndex": 2,
+            "clearText": false,
+            "required": "true"
+          }
+        }
+      }
+    },
+    "iconBrandColor": "#1a5fd8",
+    "capabilities": [],
+    "publisher": "S.C. Studio Platforms S.R.L.",
+    "stackOwner": "S.C. Studio Platforms S.R.L.",
+    "policyTemplateInstances": [
+      {
+        "templateId": "setheader",
+        "title": "Bearer router key",
+        "parameters": {
+          "x-ms-apimTemplateParameter.name": "Authorization",
+          "x-ms-apimTemplateParameter.value": "Bearer @connectionParameters('api_key')",
+          "x-ms-apimTemplateParameter.existsAction": "override",
+          "x-ms-apimTemplate-policySection": "Request"
+        }
+      }
+    ]
+  }
+}

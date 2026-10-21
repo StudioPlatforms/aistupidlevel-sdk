@@ -1,0 +1,16 @@
+{
+  "name": "routingModes",
+  "label": "Routing modes",
+  "api": {
+    "url": "/models",
+    "method": "GET",
+    "response": {
+      "iterate": "{{body.data}}",
+      "output": {
+        "label": "{{item.id}}",
+        "value": "{{item.id}}"
+      }
+    }
+  },
+  "parameters": []
+}

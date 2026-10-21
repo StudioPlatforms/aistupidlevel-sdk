@@ -1,0 +1,15 @@
+[
+  {
+    "label": "Smart Router",
+    "modules": [
+      "sendPrompt",
+      "previewRoute"
+    ]
+  },
+  {
+    "label": "Benchmarks",
+    "modules": [
+      "searchLeaderboard"
+    ]
+  }
+]

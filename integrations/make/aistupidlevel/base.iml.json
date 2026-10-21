@@ -1,0 +1,18 @@
+{
+  "baseUrl": "https://aistupidlevel.info/v1",
+  "headers": {
+    "Authorization": "Bearer {{connection.routerKey}}",
+    "X-ASL-Sandbox": "{{if(connection.mode = 'sandbox'; 'true'; '')}}",
+    "User-Agent": "aistupidlevel-make/1.0.0"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{ifempty(body.error.message; body.message)}}"
+    }
+  },
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  }
+}

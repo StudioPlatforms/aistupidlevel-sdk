@@ -1,0 +1,21 @@
+{
+  "name": "aistupidlevel-zapier",
+  "version": "1.0.0",
+  "description": "Zapier integration for the AI Stupid Level Smart Router: send prompts to the model that scores best for the task, preview routes, and read the leaderboard.",
+  "private": true,
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --testTimeout 30000"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "zapier-platform-core": "19.2.1"
+  },
+  "devDependencies": {
+    "jest": "29.7.0",
+    "nock": "13.5.6"
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "name": "searchLeaderboard",
+  "typeId": 9,
+  "label": "Search the Leaderboard",
+  "description": "Returns the top models on an AI Stupid Level leaderboard (combined, coding, reasoning or tool use). Needs a Data API key on the connection.",
+  "api": {
+    "url": "https://aistupidlevel.info/api/v1/models",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer {{connection.dataKey}}",
+      "X-ASL-Sandbox": ""
+    },
+    "qs": {
+      "sortBy": "{{parameters.board}}",
+      "period": "{{parameters.period}}"
+    },
+    "response": {
+      "limit": "{{ifempty(parameters.limit; 10)}}",
+      "iterate": {
+        "container": "{{body.data}}",
+        "condition": "{{if(parameters.vendor; lower(item.vendor) = lower(parameters.vendor); true)}}"
+      },
+      "output": {
+        "id": "{{item.id}}",
+        "model": "{{item.name}}",
+        "display_name": "{{ifempty(item.displayName; item.name)}}",
+        "vendor": "{{item.vendor}}",
+        "score": "{{item.currentScore}}",
+        "trend": "{{item.trend}}",
+        "status": "{{item.status}}",
+        "last_updated": "{{item.lastUpdated}}"
+      }
+    }
+  },
+  "parameters": [],
+  "expect": [
+    {
+      "name": "board",
+      "label": "Leaderboard",
+      "type": "select",
+      "required": true,
+      "default": "combined",
+      "options": [
+        {
+          "label": "Combined",
+          "value": "combined"
+        },
+        {
+          "label": "Coding",
+          "value": "coding"
+        },
+        {
+          "label": "Reasoning",
+          "value": "reasoning"
+        },
+        {
+          "label": "Tool use",
+          "value": "tooling"
+        }
+      ]
+    },
+    {
+      "name": "period",
+      "label": "Period",
+      "type": "select",
+      "default": "24h",
+      "options": [
+        {
+          "label": "Last 24 hours",
+          "value": "24h"
+        },
+        {
+          "label": "Last 7 days",
+          "value": "7d"
+        },
+        {
+          "label": "Last 30 days",
+          "value": "1m"
+        },
+        {
+          "label": "Latest run (paid Data API plans)",
+          "value": "latest"
+        }
+      ]
+    },
+    {
+      "name": "vendor",
+      "label": "Vendor",
+      "type": "text",
+      "help": "Only this vendor, for example anthropic, openai or google."
+    },
+    {
+      "name": "limit",
+      "label": "Limit",
+      "type": "uinteger",
+      "default": 10,
+      "help": "The most models to return."
+    }
+  ],
+  "interface": [
+    {
+      "name": "display_name",
+      "label": "Model",
+      "type": "text"
+    },
+    {
+      "name": "model",
+      "label": "Model ID",
+      "type": "text"
+    },
+    {
+      "name": "vendor",
+      "label": "Vendor",
+      "type": "text"
+    },
+    {
+      "name": "score",
+      "label": "Score",
+      "type": "number"
+    },
+    {
+      "name": "trend",
+      "label": "Trend",
+      "type": "text"
+    },
+    {
+      "name": "status",
+      "label": "Status",
+      "type": "text"
+    },
+    {
+      "name": "last_updated",
+      "label": "Last updated",
+      "type": "date"
+    },
+    {
+      "name": "id",
+      "label": "ID",
+      "type": "text"
+    }
+  ],
+  "samples": {
+    "id": "292",
+    "model": "claude-opus-5-5",
+    "display_name": "Claude Opus 5.5",
+    "vendor": "anthropic",
+    "score": 95,
+    "trend": "stable",
+    "status": "excellent",
+    "last_updated": "2026-10-20T06:00:00.239Z"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "aistupidlevel",
+  "label": "AI Stupid Level",
+  "description": "Send prompts through the AI Stupid Level Smart Router, which picks the model that scores best for the task, and read its leaderboard.",
+  "theme": "#1a5fd8",
+  "language": "en"
+}

@@ -1,0 +1,201 @@
+{
+  "name": "sendPrompt",
+  "typeId": 4,
+  "label": "Send a Prompt",
+  "description": "Sends a conversation through the Smart Router, which picks the model that scores best for the routing mode, and returns the answer and which model gave it.",
+  "api": {
+    "url": "/chat/completions",
+    "method": "POST",
+    "body": {
+      "model": "{{parameters.model}}",
+      "messages": "{{parameters.messages}}",
+      "max_tokens": "{{parameters.max_tokens}}",
+      "temperature": "{{parameters.temperature}}",
+      "reasoning_effort": "{{parameters.reasoning_effort}}"
+    },
+    "type": "json",
+    "response": {
+      "output": {
+        "answer": "{{body.choices[1].message.content}}",
+        "finish_reason": "{{body.choices[1].finish_reason}}",
+        "model": "{{ifempty(headers['x-aism-model']; body.model)}}",
+        "provider": "{{headers['x-aism-provider']}}",
+        "why": "{{headers['x-aism-reasoning']}}",
+        "latency_ms": "{{parseNumber(headers['x-aism-latency'])}}",
+        "sandbox": "{{headers['x-aism-sandbox'] = 'true'}}",
+        "usage": "{{body.usage}}",
+        "id": "{{body.id}}"
+      }
+    }
+  },
+  "parameters": [],
+  "expect": [
+    {
+      "name": "model",
+      "label": "Routing mode",
+      "type": "select",
+      "required": true,
+      "default": "auto-best",
+      "options": "rpc://routingModes",
+      "help": "Each request goes to the model that scores best for this mode on AI Stupid Level's benchmarks, among the providers you connected. Choose a model ID to pin that model."
+    },
+    {
+      "name": "messages",
+      "label": "Messages",
+      "type": "array",
+      "required": true,
+      "spec": [
+        {
+          "name": "role",
+          "label": "Role",
+          "type": "select",
+          "required": true,
+          "default": "user",
+          "options": [
+            {
+              "label": "User",
+              "value": "user"
+            },
+            {
+              "label": "System (instructions)",
+              "value": "system"
+            },
+            {
+              "label": "Assistant",
+              "value": "assistant"
+            }
+          ]
+        },
+        {
+          "name": "content",
+          "label": "Content",
+          "type": "text",
+          "required": true
+        }
+      ],
+      "help": "The conversation. Put instructions in a System message and the prompt in a User message."
+    },
+    {
+      "name": "max_tokens",
+      "label": "Max output tokens",
+      "type": "uinteger",
+      "help": "Upper limit on the answer length, up to 64,000.",
+      "advanced": true
+    },
+    {
+      "name": "temperature",
+      "label": "Temperature",
+      "type": "number",
+      "help": "0 to 2. Leave empty for the model default.",
+      "advanced": true
+    },
+    {
+      "name": "reasoning_effort",
+      "label": "Reasoning effort",
+      "type": "select",
+      "advanced": true,
+      "options": [
+        {
+          "label": "None",
+          "value": "none"
+        },
+        {
+          "label": "Low",
+          "value": "low"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "High",
+          "value": "high"
+        },
+        {
+          "label": "Max",
+          "value": "max"
+        }
+      ],
+      "help": "For models that reason. The router maps it to the closest level each model supports."
+    }
+  ],
+  "interface": [
+    {
+      "name": "answer",
+      "label": "Answer",
+      "type": "text"
+    },
+    {
+      "name": "model",
+      "label": "Model that answered",
+      "type": "text"
+    },
+    {
+      "name": "provider",
+      "label": "Provider",
+      "type": "text"
+    },
+    {
+      "name": "why",
+      "label": "Why this model",
+      "type": "text"
+    },
+    {
+      "name": "finish_reason",
+      "label": "Finish reason",
+      "type": "text"
+    },
+    {
+      "name": "latency_ms",
+      "label": "Latency (ms)",
+      "type": "number"
+    },
+    {
+      "name": "sandbox",
+      "label": "Sandbox",
+      "type": "boolean"
+    },
+    {
+      "name": "id",
+      "label": "Completion ID",
+      "type": "text"
+    },
+    {
+      "name": "usage",
+      "label": "Usage",
+      "type": "collection",
+      "spec": [
+        {
+          "name": "prompt_tokens",
+          "label": "Prompt tokens",
+          "type": "number"
+        },
+        {
+          "name": "completion_tokens",
+          "label": "Answer tokens",
+          "type": "number"
+        },
+        {
+          "name": "total_tokens",
+          "label": "Total tokens",
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "samples": {
+    "answer": "def reverse(s: str) -> str:\n    return s[::-1]",
+    "model": "claude-opus-5-5",
+    "provider": "anthropic",
+    "why": "Selected claude-opus-5-5 from anthropic for best coding performance. Ranked #1 of 24 available models.",
+    "finish_reason": "stop",
+    "latency_ms": 1420,
+    "sandbox": false,
+    "id": "chatcmpl-mvhsp3qa3gna0z5v",
+    "usage": {
+      "prompt_tokens": 18,
+      "completion_tokens": 22,
+      "total_tokens": 40
+    }
+  }
+}

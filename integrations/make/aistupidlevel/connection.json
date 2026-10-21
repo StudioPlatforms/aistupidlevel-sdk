@@ -1,0 +1,49 @@
+{
+  "type": "apikey",
+  "label": "AI Stupid Level",
+  "parameters": [
+    {
+      "name": "routerKey",
+      "label": "Router key",
+      "type": "password",
+      "required": true,
+      "help": "Your Smart Router key (it starts with `aism_`). Create one at https://aistupidlevel.info/router/keys and add your provider keys in the router settings there."
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "type": "select",
+      "required": true,
+      "default": "live",
+      "options": [
+        {
+          "label": "Live",
+          "value": "live"
+        },
+        {
+          "label": "Sandbox (real routing, mock answers, nothing spent)",
+          "value": "sandbox"
+        }
+      ],
+      "help": "Sandbox picks the model exactly as Live does but returns a mock answer, so you can build scenarios before adding provider keys."
+    },
+    {
+      "name": "dataKey",
+      "label": "Data API key",
+      "type": "password",
+      "required": false,
+      "help": "Only for Search the Leaderboard. It starts with `asl_live_`; create a free one at https://aistupidlevel.info/account/data-keys."
+    }
+  ],
+  "api": {
+    "url": "https://aistupidlevel.info/v1/usage",
+    "headers": {
+      "Authorization": "Bearer {{parameters.routerKey}}"
+    },
+    "log": {
+      "sanitize": [
+        "request.headers.authorization"
+      ]
+    }
+  }
+}
