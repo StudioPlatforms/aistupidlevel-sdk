@@ -20,6 +20,7 @@ if (!TOKEN) { console.error('Set MAKE_API_TOKEN (scopes sdk-apps:read, sdk-apps:
 const API = `https://${ZONE}.make.com/api/v2`;
 const VERSION = 1;
 
+// Make answers 403 (not 404) for an app, module or RPC that does not exist yet.
 const read = (f) => JSON.parse(fs.readFileSync(path.join(DIR, f), 'utf8'));
 const STATE_FILE = path.join(DIR, '.make-state.json');
 const state = fs.existsSync(STATE_FILE) ? JSON.parse(fs.readFileSync(STATE_FILE, 'utf8')) : {};
@@ -37,20 +38,26 @@ async function call(method, url, body, { okStatuses = [] } = {}) {
 }
 
 const app = read('app.json');
-const A = `/sdk/apps/${app.name}/${VERSION}`;
+// Make adds a random suffix to the name on creation (aistupidlevel-xxxxxx); it is kept in the state file.
+const appName = () => state.appName || app.name;
+const A_ = () => `/sdk/apps/${appName()}/${VERSION}`;
+let A = A_();
 
 // 1. The app itself.
-const existing = await call('GET', A, undefined, { okStatuses: [404] });
-if (existing.status === 404) {
-  await call('POST', '/sdk/apps', { name: app.name, label: app.label, description: app.description, theme: app.theme, language: app.language });
-  console.log('created app', app.name);
+const existing = await call('GET', A, undefined, { okStatuses: [403, 404] });
+if (existing.status >= 400) {
+  const r = await call('POST', '/sdk/apps', { name: app.name, label: app.label, description: app.description, theme: app.theme, language: app.language });
+  state.appName = (r.json.app || r.json).name;
+  save();
+  A = A_();
+  console.log('created app', state.appName);
 }
 await call('PUT', `${A}/base`, read('base.iml.json'));
 
 // 2. The connection: router key, live or sandbox, optional data key.
 const conn = read('connection.json');
 if (!state.connection) {
-  const r = await call('POST', `/sdk/apps/${app.name}/connections`, { type: conn.type, label: conn.label });
+  const r = await call('POST', `/sdk/apps/${appName()}/connections`, { type: conn.type, label: conn.label });
   state.connection = (r.json.appConnection || r.json.connection || r.json).name;
   save();
   console.log('created connection', state.connection);
@@ -61,8 +68,8 @@ await call('PUT', `/sdk/apps/connections/${state.connection}/parameters`, conn.p
 // 3. The RPC that fills the Routing mode dropdown.
 for (const f of fs.readdirSync(path.join(DIR, 'rpcs'))) {
   const rpc = read(`rpcs/${f}`);
-  const got = await call('GET', `${A}/rpcs/${rpc.name}`, undefined, { okStatuses: [404] });
-  if (got.status === 404) await call('POST', `${A}/rpcs`, { name: rpc.name, label: rpc.label, connection: state.connection });
+  const got = await call('GET', `${A}/rpcs/${rpc.name}`, undefined, { okStatuses: [403, 404] });
+  if (got.status >= 400) await call('POST', `${A}/rpcs`, { name: rpc.name, label: rpc.label, connection: state.connection });
   else await call('PATCH', `${A}/rpcs/${rpc.name}`, { label: rpc.label, connection: state.connection });
   await call('PUT', `${A}/rpcs/${rpc.name}/api`, rpc.api);
   await call('PUT', `${A}/rpcs/${rpc.name}/parameters`, rpc.parameters);
@@ -72,8 +79,8 @@ for (const f of fs.readdirSync(path.join(DIR, 'rpcs'))) {
 // 4. The modules.
 for (const f of fs.readdirSync(path.join(DIR, 'modules'))) {
   const m = read(`modules/${f}`);
-  const got = await call('GET', `${A}/modules/${m.name}`, undefined, { okStatuses: [404] });
-  if (got.status === 404) {
+  const got = await call('GET', `${A}/modules/${m.name}`, undefined, { okStatuses: [403, 404] });
+  if (got.status >= 400) {
     await call('POST', `${A}/modules`, { name: m.name, typeId: m.typeId, label: m.label, description: m.description, moduleInitMode: 'blank' });
   }
   await call('PATCH', `${A}/modules/${m.name}`, { label: m.label, description: m.description, connection: state.connection });
