@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "langchain-aistupidlevel"
+version = "0.1.0"
+description = "LangChain chat model for the AI Stupid Level Smart Router: each request goes to the model that scores best for the task, with your own provider keys."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "AI Stupid Level", email = "hello@aistupidlevel.info" }]
+keywords = ["langchain", "llm", "router", "aistupidlevel", "openai-compatible", "model-routing"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = ["langchain-openai>=1.0,<2", "langchain-core>=1.0,<2"]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "pytest-asyncio>=0.23", "pytest-socket>=0.7", "langchain-tests>=1.0,<2"]
+
+[project.urls]
+Homepage = "https://aistupidlevel.info/router"
+Documentation = "https://aistupidlevel.info/router/docs#integrations"
+Source = "https://github.com/StudioPlatforms/aistupidlevel-sdk/tree/main/langchain-python"
+Issues = "https://github.com/StudioPlatforms/aistupidlevel-sdk/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["langchain_aistupidlevel"]
+
+[tool.hatch.build.targets.sdist]
+include = ["langchain_aistupidlevel", "tests", "README.md", "LICENSE", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
