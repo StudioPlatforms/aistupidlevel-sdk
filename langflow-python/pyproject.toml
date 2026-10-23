@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lfx-aistupidlevel"
+version = "0.1.0"
+description = "AI Stupid Level Smart Router for Langflow: a model provider and a component that send each request to the model that scores best for the task, with your own provider keys."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "AI Stupid Level", email = "hello@aistupidlevel.info" }]
+keywords = ["langflow", "lfx", "extension", "llm", "router", "aistupidlevel", "openai-compatible", "model-routing"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# lfx is Langflow's runtime: it reads extension.json and registers the provider. ChatAISL
+# (langchain-aistupidlevel) is the chat model class, and httpx backs model discovery and the
+# key check.
+dependencies = [
+  "lfx>=1.12.0,<2",
+  "langchain-aistupidlevel>=0.1.0,<0.2",
+  "httpx>=0.27,<1",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "pytest-asyncio>=0.23", "respx>=0.21"]
+
+# Langflow finds installed extensions through this entry point and the extension.json
+# shipped inside the package.
+[project.entry-points."langflow.extensions"]
+lfx-aistupidlevel = "lfx_aistupidlevel"
+
+[project.urls]
+Homepage = "https://aistupidlevel.info/router"
+Documentation = "https://aistupidlevel.info/router/docs"
+Source = "https://github.com/StudioPlatforms/aistupidlevel-sdk/tree/main/langflow-python"
+Issues = "https://github.com/StudioPlatforms/aistupidlevel-sdk/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lfx_aistupidlevel"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "README.md", "LICENSE", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"

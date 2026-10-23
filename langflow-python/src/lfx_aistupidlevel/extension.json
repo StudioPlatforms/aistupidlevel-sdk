@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schemas.langflow.org/extension/v1.json",
+  "id": "lfx-aistupidlevel",
+  "version": "0.1.0",
+  "name": "AI Stupid Level",
+  "description": "The AI Stupid Level Smart Router as a Langflow model provider and component. Each request goes to the model that scores best on AI Stupid Level's benchmarks for the chosen routing mode, called with your own provider keys.",
+  "lfx": {
+    "compat": ["1"]
+  },
+  "bundles": [
+    {
+      "name": "aistupidlevel",
+      "path": "components/aistupidlevel",
+      "display_name": "AI Stupid Level",
+      "icon": "Gauge"
+    }
+  ],
+  "providers": [
+    {
+      "name": "AI Stupid Level",
+      "provider_id": "aistupidlevel",
+      "display_name": "AI Stupid Level",
+      "metadata": {
+        "icon": "Gauge",
+        "max_tokens_field_name": "max_tokens",
+        "variables": [
+          {
+            "variable_name": "AI Stupid Level API Key",
+            "variable_key": "AISTUPIDLEVEL_API_KEY",
+            "description": "Router key (aism_...) from https://aistupidlevel.info/router/keys.",
+            "required": true,
+            "is_secret": true,
+            "is_list": false,
+            "options": [],
+            "langchain_param": "api_key",
+            "component_metadata": {
+              "mapping_field": "api_key",
+              "required": false,
+              "advanced": true,
+              "info": "Falls back to the AISTUPIDLEVEL_API_KEY environment variable"
+            }
+          }
+        ],
+        "api_docs_url": "https://aistupidlevel.info/router/docs",
+        "mapping": {
+          "model_class": "ChatAISL",
+          "model_param": "model"
+        }
+      },
+      "model_class": {
+        "module": "langchain_aistupidlevel",
+        "attr": "ChatAISL",
+        "install_hint": "langchain-aistupidlevel"
+      },
+      "api_key_required": true,
+      "live": true,
+      "live_discovery": "lfx_aistupidlevel.discovery:fetch_live_models",
+      "validator": "lfx_aistupidlevel.discovery:validate_credentials",
+      "catalog_loader": "lfx_aistupidlevel.discovery:load_static_catalog"
+    }
+  ]
+}
