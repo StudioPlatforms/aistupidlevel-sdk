@@ -1,0 +1,62 @@
+{
+  "name": "@aistupidlevel/pi-provider",
+  "version": "0.1.0",
+  "description": "AI Stupid Level Smart Router as a Pi provider: routing modes such as auto-coding send each request to the model with the best measured benchmark score, using your own provider keys with zero token markup.",
+  "type": "module",
+  "license": "MIT",
+  "author": "AI Stupid Level <hello@aistupidlevel.info> (https://aistupidlevel.info)",
+  "homepage": "https://github.com/StudioPlatforms/aistupidlevel-sdk/tree/main/packages/pi-provider#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StudioPlatforms/aistupidlevel-sdk.git",
+    "directory": "packages/pi-provider"
+  },
+  "bugs": "https://github.com/StudioPlatforms/aistupidlevel-sdk/issues",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-extension",
+    "pi-coding-agent",
+    "provider",
+    "router",
+    "routing",
+    "gateway",
+    "llm",
+    "openai-compatible",
+    "byok",
+    "benchmarks",
+    "aistupidlevel"
+  ],
+  "files": [
+    "index.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "image": "https://raw.githubusercontent.com/StudioPlatforms/aistupidlevel-sdk/main/packages/pi-provider/assets/gallery.svg"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "npm run typecheck && node --test test/*.test.ts",
+    "prepublishOnly": "npm test"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-ai": "1.4.0",
+    "@earendil-works/pi-coding-agent": "1.4.0",
+    "@types/node": "22.19.19",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

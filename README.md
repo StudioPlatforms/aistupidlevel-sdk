@@ -16,6 +16,7 @@ based on benchmarks that are re-run continuously. You call it with your own prov
 | Hermes Agent provider plugin | `hermes plugins install aistupidlevel` | [integrations/hermes/aistupidlevel](integrations/hermes/aistupidlevel) |
 | DeepSeek Harness plugin bundle | `dsh plugin --profile web add @aistupidlevel/dsh-provider` | [packages/dsh-provider](packages/dsh-provider) |
 | OpenClaw provider plugin | `openclaw plugins install clawhub:@aistupidlevel/openclaw-provider` | [packages/openclaw-provider](packages/openclaw-provider) |
+| Pi provider extension | `pi install npm:@aistupidlevel/pi-provider` | [packages/pi-provider](packages/pi-provider) |
 
 [`openapi/router-v1.json`](openapi/router-v1.json) describes the API in OpenAPI 3.1, for generating a
 client in any other language. The live copy is at <https://aistupidlevel.info/v1/openapi.json>.
@@ -61,6 +62,7 @@ cd packages/router && npm ci && npm run build && npm test
 cd packages/ai-sdk-provider && npm ci && npm run build && npm test
 cd packages/mcp && npm ci && npm run build && npm test
 cd packages/openclaw-provider && npm ci && npm test   # Node 24.16+, like OpenClaw
+cd packages/pi-provider && npm ci && npm test         # Node 22.19+, like Pi
 cd packages/n8n-nodes-aistupidlevel && npm ci && npm run build && npm run lint && npm test
 
 # Python
@@ -91,6 +93,8 @@ ASL_ROUTER_KEY=aism_... python -m unittest discover -s tests
    `packages/n8n-nodes-aistupidlevel/package.json` and its `CHANGELOG.md`, then push a tag `n8n-v<version>`.
 6. Raycast: from `integrations/raycast/aistupidlevel`, `npm run publish` opens a pull request to
    raycast/extensions.
+7. Pi: `cd packages/pi-provider && npm publish` (Node 22.19+). Push first: the pi.dev gallery image is
+   read from `main`. The `pi-package` keyword lists it on pi.dev/packages; there is nothing to submit.
 
 ## Licence
 
