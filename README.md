@@ -18,6 +18,7 @@ based on benchmarks that are re-run continuously. You call it with your own prov
 | OpenClaw provider plugin | `openclaw plugins install clawhub:@aistupidlevel/openclaw-provider` | [packages/openclaw-provider](packages/openclaw-provider) |
 | Pi provider extension | `pi install npm:@aistupidlevel/pi-provider` | [packages/pi-provider](packages/pi-provider) |
 | Langflow model provider + component | `pip install lfx-aistupidlevel`, then restart Langflow | [langflow-python](langflow-python) |
+| Open WebUI Function (manifold pipe) | Admin Panel → Functions → Import from URL | [integrations/open-webui](integrations/open-webui) |
 
 [`openapi/router-v1.json`](openapi/router-v1.json) describes the API in OpenAPI 3.1, for generating a
 client in any other language. The live copy is at <https://aistupidlevel.info/v1/openapi.json>.
