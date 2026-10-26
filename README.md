@@ -10,7 +10,7 @@ based on benchmarks that are re-run continuously. You call it with your own prov
 | Python | `pip install aistupidlevel` | [python](python) |
 | Vercel AI SDK provider | `npm install @aistupidlevel/ai-sdk-provider` | [packages/ai-sdk-provider](packages/ai-sdk-provider) |
 | MCP server (Claude, Cursor, VS Code, …) | `npx -y @aistupidlevel/mcp` | [packages/mcp](packages/mcp) |
-| n8n community node | Settings → Community Nodes → `n8n-nodes-aistupidlevel` | [packages/n8n-nodes-aistupidlevel](packages/n8n-nodes-aistupidlevel) |
+| n8n community node | Settings → Community Nodes → `n8n-nodes-aistupidlevel` | [StudioPlatforms/n8n-nodes-aistupidlevel](https://github.com/StudioPlatforms/n8n-nodes-aistupidlevel) (own repository, as n8n verification requires) |
 | Raycast extension | Raycast Store (in review) | [integrations/raycast/aistupidlevel](integrations/raycast/aistupidlevel) |
 | LangChain chat model (`ChatAISL`) | `pip install langchain-aistupidlevel` | [langchain-python](langchain-python) |
 | Hermes Agent provider plugin | `hermes plugins install aistupidlevel` | [integrations/hermes/aistupidlevel](integrations/hermes/aistupidlevel) |
@@ -65,7 +65,6 @@ cd packages/ai-sdk-provider && npm ci && npm run build && npm test
 cd packages/mcp && npm ci && npm run build && npm test
 cd packages/openclaw-provider && npm ci && npm test   # Node 24.16+, like OpenClaw
 cd packages/pi-provider && npm ci && npm test         # Node 22.19+, like Pi
-cd packages/n8n-nodes-aistupidlevel && npm ci && npm run build && npm run lint && npm test
 
 # Python
 cd python && pip install -e . && python -m unittest discover -s tests
@@ -91,9 +90,8 @@ ASL_ROUTER_KEY=aism_... python -m unittest discover -s tests
    and runs its tests first.
 3. PyPI: `cd python && python -m build && twine upload dist/*`.
 4. MCP Registry, after the npm release of `@aistupidlevel/mcp`: `cd packages/mcp && mcp-publisher login github && mcp-publisher publish`.
-5. n8n node: n8n accepts only npm releases with provenance, so it is published by
-   [`.github/workflows/n8n-publish.yml`](.github/workflows/n8n-publish.yml). Bump
-   `packages/n8n-nodes-aistupidlevel/package.json` and its `CHANGELOG.md`, then push a tag `n8n-v<version>`.
+5. n8n node: released from its own repository,
+   [StudioPlatforms/n8n-nodes-aistupidlevel](https://github.com/StudioPlatforms/n8n-nodes-aistupidlevel), by a `v<version>` tag.
 6. Raycast: from `integrations/raycast/aistupidlevel`, `npm run publish` opens a pull request to
    raycast/extensions.
 7. Pi: `cd packages/pi-provider && npm publish` (Node 22.19+). Push first: the pi.dev gallery image is
