@@ -10,7 +10,7 @@ based on benchmarks that are re-run continuously. You call it with your own prov
 | Python | `pip install aistupidlevel` | [python](python) |
 | Vercel AI SDK provider | `npm install @aistupidlevel/ai-sdk-provider` | [packages/ai-sdk-provider](packages/ai-sdk-provider) |
 | MCP server (Claude, Cursor, VS Code, …) | `npx -y @aistupidlevel/mcp` | [packages/mcp](packages/mcp) |
-| n8n community node | Settings → Community Nodes → `n8n-nodes-aistupidlevel` | [StudioPlatforms/n8n-nodes-aistupidlevel](https://github.com/StudioPlatforms/n8n-nodes-aistupidlevel) (own repository, as n8n verification requires) |
+| n8n community node | n8n Cloud: search "AI Stupid Level" on the canvas (verified); self-hosted: Settings → Community Nodes → `n8n-nodes-aistupidlevel` | [StudioPlatforms/n8n-nodes-aistupidlevel](https://github.com/StudioPlatforms/n8n-nodes-aistupidlevel) (own repository, as n8n verification requires) |
 | Raycast extension | Raycast Store (in review) | [integrations/raycast/aistupidlevel](integrations/raycast/aistupidlevel) |
 | LangChain chat model (`ChatAISL`) | `pip install langchain-aistupidlevel` | [langchain-python](langchain-python) |
 | Hermes Agent provider plugin | `hermes plugins install aistupidlevel` | [integrations/hermes/aistupidlevel](integrations/hermes/aistupidlevel) |
