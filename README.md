@@ -1,5 +1,7 @@
 # AI Stupid Level SDKs
 
+[![StudioPlatforms/aistupidlevel-sdk MCP server](https://glama.ai/mcp/servers/StudioPlatforms/aistupidlevel-sdk/badges/score.svg)](https://glama.ai/mcp/servers/StudioPlatforms/aistupidlevel-sdk)
+
 Official clients for the [AI Stupid Level Smart Router](https://aistupidlevel.info/router), an
 OpenAI-compatible endpoint. Each request goes to the model measuring best for that kind of work,
 based on benchmarks that are re-run continuously. You call it with your own provider keys.
